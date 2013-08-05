@@ -8,7 +8,7 @@ def parse_sentiments(sentiments):
 	scores = {}
 	for line in sentiments:
 		term, score = line.split("\t")
-		scores[term] = int(score)
+		scores[term] = float(score)
 	return scores
 
 def dict_from_json_strings(json_list):
@@ -27,6 +27,7 @@ def sentiment_score(text, scores):
 def print_sentiment_scores_for_tweets(tweets, scores):
 	for tweet in tweets:
 		try:
+			print tweet['text']
 			print sentiment_score(tweet['text'], scores)
 		except(KeyError):
 			pass

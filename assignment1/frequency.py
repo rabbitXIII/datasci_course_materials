@@ -9,18 +9,31 @@ def dict_from_json_strings(json_list):
 	return tweets
 
 def update_term_counts(text, term_counts):
-
+	for term in text.replace('\n','').replace('.','').replace(',','').rsplit(' '):
+		if term != "" and term is not None:
+			if not term in term_counts:
+				term_counts[term] = 0
+			term_counts[term] += 1
+	return term_counts
 
 def main():
-	tweet_file = open(sys.argv[2])
+	tweet_file = open(sys.argv[1])
 	tweets = dict_from_json_strings(tweet_file.readlines())
 	term_counts = {}
 	for tweet in tweets:
-		term_counts = update_term_counts(tweet['text'], term_counts)
+		try:
+			term_counts = update_term_counts(tweet['text'], term_counts)
+		except(KeyError):
+			pass
 	total_term_count = 0
 	for term,count in term_counts.iteritems():
 		total_term_count += count
 	for term,count in term_counts.iteritems():
 		term_freq = float(count)/float(total_term_count)
-		print "{} {}".format(term,term_freq)
-	
+		try:
+			print "{} {}".format(term,term_freq)
+		except(UnicodeEncodeError):
+			pass
+
+if __name__ == '__main__':
+	main()

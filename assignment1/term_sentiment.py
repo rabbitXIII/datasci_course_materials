@@ -28,9 +28,8 @@ def sentiment_score(text, scores):
 	return score
 
 def update_scores_for_new_words(text, scores, sentiment):
-	for word in text:
+	for word in text.replace('.','').replace(',','').rsplit(' '):
 		if not word in scores:
-			print word
 			scores[word] = sentiment
 	return scores
 

@@ -33,14 +33,15 @@ def main():
 			if tweet['coordinates'] is not None:
 				location = tweet['coordinates']
 				location = None
-				# this needs to be looked up to find a state
+				# this needs to be looked up to find a state via coordinates
 			if tweet['place'] is not None and tweet['place']['country'] == "United States":
-				location = tweet['place']['full_name'].replace(' ','').rsplit(',')[-1:]
+				location = tweet['place']['full_name'].replace(' ','').rsplit(',')[-1]
 			elif tweet['user']['location'] is not None:
 				location = tweet['user']['location']
+				location = None
+				# the user's location is too variable to use unless we add a lot of parsing rules
 
 			if location is not None and location != "":
-				print location
 				if location not in location_sentiment_collection:
 					location_sentiment_collection[location] = []
 				location_sentiment_collection[location].append(sentiment_score(tweet['text'],scores))
@@ -49,6 +50,10 @@ def main():
 			pass
 		except(UnicodeEncodeError):
 			pass
+
+	for location, score_list in location_sentiment_collection.iteritems():
+		average_sentiment = float(sum(score_list))/float(len(score_list))
+		print "{} {}".format(location, average_sentiment)
 
 
 

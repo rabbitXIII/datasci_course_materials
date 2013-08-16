@@ -22,7 +22,12 @@ def main():
 	scores = parse_sentiments(sent_file.readlines())
 	tweets = dict_from_json_strings(tweet_file.readlines())
 	for tweet in tweets:
-		print tweet
+		try:
+			print tweet['coordinates']
+			print tweet['place']
+			print tweet['user']['location']
+		except(KeyError):
+			pass
 
 
 

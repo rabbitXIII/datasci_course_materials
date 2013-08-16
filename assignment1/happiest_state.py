@@ -36,11 +36,11 @@ def main():
 				# this needs to be looked up to find a state
 			if tweet['place'] is not None and tweet['place']['country'] == "United States":
 				location = tweet['place']['full_name'].replace(' ','').rsplit(',')[-1:]
-				print location
 			elif tweet['user']['location'] is not None:
 				location = tweet['user']['location']
 
 			if location is not None and location != "":
+				print location
 				if location not in location_sentiment_collection:
 					location_sentiment_collection[location] = []
 				location_sentiment_collection[location].append(sentiment_score(tweet['text'],scores))

@@ -33,7 +33,7 @@ def main():
 			if tweet['coordinates'] is not None:
 				location = tweet['coordinates']
 				# this needs to be looked up to find a state
-			if tweet['place'] is not None:
+			if tweet['place'] is not None and tweet['place']['country_code'] == "US":
 				location = tweet['place']['fullname']
 			elif tweet['user']['location'] is not None:
 				location = tweet['user']['location']

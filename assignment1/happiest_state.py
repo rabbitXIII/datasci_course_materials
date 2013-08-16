@@ -50,10 +50,17 @@ def main():
 			pass
 		except(UnicodeEncodeError):
 			pass
-
+	happiest_state = None
+	happiest_state_score = None
 	for location, score_list in location_sentiment_collection.iteritems():
 		average_sentiment = float(sum(score_list))/float(len(score_list))
-		print "{} {}".format(location, average_sentiment)
+		if average_sentiment > happiest_state_score:
+			happiest_state = location
+			happiest_state_score = average_sentiment
+
+		#print "{} {}".format(location, average_sentiment)
+
+	print happiest_state
 
 
 

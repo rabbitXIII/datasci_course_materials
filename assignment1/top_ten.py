@@ -11,6 +11,11 @@ def dict_from_json_strings(json_list):
 def main():
 	tweet_file = open(sys.argv[1])
 	tweets = dict_from_json_strings(tweet_file.readlines())
+	for tweet in tweets:
+		try:
+			print tweet['entities']['hashtags']
+		except(KeyError):
+			pass
 
 
 if __name__ == '__main__':

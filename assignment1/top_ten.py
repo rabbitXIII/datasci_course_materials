@@ -27,7 +27,7 @@ def main():
 	sorted_hashtag_list.reverse()
 
 	for i in range(10):
-		print "{} {}".format(sorted_hashtag_list[i][0], sorted_hashtag_list[i][1])
+		print "{} {}".format(sorted_hashtag_list[i][0], float(sorted_hashtag_list[i][1]))
 
 if __name__ == '__main__':
 	main()

@@ -27,3 +27,6 @@ select count(*) from
 
 
 -- subproblem f
+select count(*) from frequency 
+	where term = 'world' 
+	and docid in ( select docid from frequency where term = 'transactions' );

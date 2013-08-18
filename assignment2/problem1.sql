@@ -6,6 +6,7 @@ select count(*) from frequency where docid = '10398_txt_earn';
 select count(*) from frequency where docid = '10398_txt_earn' and count=1;
 
 -- subproblem c
+-- 2/5 (UNION instead of UNION ALL? )
 select count(*) from 
 	( select * 
 		from frequency 
@@ -16,14 +17,16 @@ select count(*) from
 		where docid = '925_txt_trade' and count = 1 );
 
 -- subproblem d
-select count(*) from frequency where term like '%parliament%';
+-- containing parliament EXACTLY
+select count(*) from frequency where term = 'parliament';
 
 -- subproblem e
-select count(*) from 
-	( select docid, count(*) number_of_terms 
+-- 300 terms, not distinct terms
+select count(*) from (
+	select docid, sum(count) as sum_of_terms
 		from frequency 
 		group by docid 
-		having number_of_terms > 300 );
+		having sum_of_terms > 300);
 
 
 -- subproblem f

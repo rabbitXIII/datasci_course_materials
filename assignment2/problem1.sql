@@ -1,3 +1,4 @@
+-- Rohit Gopal - Intro to Data Science Assignment 2 Problem 1
 -- subproblem a
 select count(*) from frequency where docid = '10398_txt_earn';
 
@@ -13,3 +14,7 @@ select count(*) from
 -- subproblem d
 select count(*) from frequency where term like '%parliament%';
 
+-- subproblem e
+
+
+-- subproblem f

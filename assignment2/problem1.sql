@@ -10,3 +10,6 @@ select count(*) from
 		UNION 
 		select * from frequency where docid = '925_txt_trade' and count = 1 );
 
+-- subproblem d
+select count(*) from frequency where term like '%parliament%';
+
